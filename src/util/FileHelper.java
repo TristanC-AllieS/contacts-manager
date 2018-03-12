@@ -50,9 +50,4 @@ public class FileHelper {
         spit(filename + ".exciting", data);
     }
 
-    public static void main(String[] args) {
-        List<String> test = Arrays.asList("Abcd", "Efg", "Hijk");
-        spit("test", test);
-        makeExciting("test");
-    }
 }
