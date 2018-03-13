@@ -17,10 +17,12 @@ class ContactManager {
 
     private static final String LINE_BREAK = "------------------------------";
 
-    private static List<String> contactList = new ArrayList<>();
+    private static final String CONTACTS_FILE = "data/contacts.txt";
+
+    private static List<Contact> contactList = new ArrayList<>();
 
     private static void showContacts() {
-        // TODO
+
     }
 
     private static void searchContact() {
@@ -36,6 +38,11 @@ class ContactManager {
     }
 
     public static void main(String args[]) {
+
+        for (String line: FileHelper.slurp(CONTACTS_FILE)) {
+            String[] info = line.split(":");
+            contactList.add(new Contact(info[0], info[1]));
+        }
 
         for(boolean shouldContinue = true; shouldContinue;) {
            
