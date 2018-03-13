@@ -15,8 +15,8 @@ class ContactManager {
     private static final String ANSI_PURPLE = "\u001B[35m";
     private static final String ANSI_CYAN = "\u001B[36m";
     private static final String ANSI_WHITE = "\u001B[37m";
-    private static final String LINE_BREAK = String.format("%s========================================%s", ANSI_GREEN, ANSI_RESET);
-    private static final String DIVIDER = String.format("%s----------------------------------------%s", ANSI_BLACK, ANSI_RESET);
+    private static final String LINE_BREAK = String.format("%s==========================================%s", ANSI_GREEN, ANSI_RESET);
+    private static final String DIVIDER = String.format("%s------------------------------------------%s", ANSI_BLUE, ANSI_RESET);
     private static final String CONTACTS_FILE = "data/contacts.txt";
     private static final String[] MENU_OPTS = {
         "View contacts.", 
@@ -48,7 +48,7 @@ class ContactManager {
         for(Contact c: contactList) {
             if (search.equalsIgnoreCase(c.getName())) {
                 System.out.println(LINE_BREAK);
-                System.out.printf("%s%-25s | %-11s%s\n", ANSI_BLACK, "Name", "Phone Number", ANSI_RESET);
+                System.out.printf("%s%-25s | %-11s%s\n", ANSI_BLUE, "Name", "Phone Number", ANSI_RESET);
                 System.out.println(DIVIDER);
                 System.out.printf("%-25s | %-11s\n", c.getName(), prettyNum(c.getNumber()));
                 System.out.println(LINE_BREAK);
