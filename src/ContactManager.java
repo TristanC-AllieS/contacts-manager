@@ -30,11 +30,12 @@ class ContactManager {
     private static Input in = new Input();
     private static List<Contact> contactList = new ArrayList<>();
 
+    // Utility Methods
     private static String prettyNum(String n) {
         return String.format("%s-%s-%s-%s", n.charAt(0), n.substring(1,4), n.substring(4,7), n.substring(7));
     }
 
-    // Operation Methods...
+    // Operation Methods
     private static void showContacts() {
         System.out.println(LINE_BREAK);
         System.out.printf("%-25s | %-11s\n", "Name", "Phone Number");
@@ -84,7 +85,6 @@ class ContactManager {
     }
 
     public static void main(String args[]) {
-
         // Dwight
         for (String line: FileHelper.slurp("data/dwight")) 
             System.out.printf("%s%s%s\n", ANSI_GREEN, line, ANSI_RESET);
