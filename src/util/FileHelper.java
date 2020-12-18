@@ -11,10 +11,16 @@ import java.util.ArrayList;
 public class FileHelper {
 
     public static List<String> slurp(String filepath) {
-        
+
         List<String> data = new ArrayList<>();
 
         try {
+            boolean fileExists = Files.exists(Paths.get(filepath));
+
+            if(!fileExists) {
+                Files.createFile(Paths.get(filepath));
+            }
+
             data = Files.readAllLines(Paths.get(filepath));
         } catch (IOException e) {
             e.printStackTrace();
@@ -26,16 +32,8 @@ public class FileHelper {
 
     public static void spit(String filename, List<String> contents) {
         try {
-            Files.write(Paths.get(filename), contents, StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-    }
-    
-    public static void spit(String filename, List<String> contents, boolean append) {
-        try {
-            Files.write(Paths.get(filename), contents, StandardOpenOption.APPEND);
+            boolean fileExists = Files.exists(Paths.get(filename));
+            Files.write(Paths.get(filename), contents, fileExists ? StandardOpenOption.TRUNCATE_EXISTING : StandardOpenOption.CREATE);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
