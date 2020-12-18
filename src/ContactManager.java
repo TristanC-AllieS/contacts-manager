@@ -75,7 +75,7 @@ class ContactManager {
     private static void deleteContact() {
         String searchToDelete = in.getString("Type a name to search and delete: ");
         for (Contact c: contactList) {
-            if (searchToDelete.equalsIgnoreCase(c.getName())) {
+            if (Pattern.compile(Pattern.quote(searchToDelete), Pattern.CASE_INSENSITIVE).matcher(c.getName()).find()) {
                 contactList.remove(c);
                 System.out.printf("%sDeleted FOREVER.%s\n", ANSI_RED, ANSI_RESET);
                 return;
