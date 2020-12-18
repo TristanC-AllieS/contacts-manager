@@ -36,6 +36,11 @@ class ContactManager {
         return String.format("%s-%s-%s-%s", n.charAt(0), n.substring(1,4), n.substring(4,7), n.substring(7));
     }
 
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     // Operation Methods
     private static void showContacts() {
         System.out.println(LINE_BREAK);
@@ -86,6 +91,9 @@ class ContactManager {
     }
 
     public static void main(String args[]) {
+
+        clearScreen();
+
         // Dwight
         for (String line: FileHelper.slurp("data/dwight")) 
             System.out.printf("%s%s%s\n", ANSI_GREEN, line, ANSI_RESET);
@@ -103,6 +111,8 @@ class ContactManager {
                 System.out.printf("%d %s\n", i + 1, MENU_OPTS[i]);
 
             int userOpt = in.getInt("Enter an option (1, 2, 3, 4 or 5): ");
+
+            clearScreen();
 
             switch (userOpt) {
                 case 1:
@@ -131,7 +141,7 @@ class ContactManager {
         List<String> out_data = new ArrayList<>();
         for(Contact c: contactList)
             out_data.add(String.format("%s:%s", c.getName(), c.getNumber()));
-        
+
         FileHelper.spit(CONTACTS_FILE, out_data);
     }
 }
