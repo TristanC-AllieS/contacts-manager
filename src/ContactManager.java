@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.ArrayList;
 import util.FileHelper;
 import util.Input;
@@ -47,7 +48,7 @@ class ContactManager {
     private static void searchContact() {
         String search = in.getString("Type a name to search: ");
         for(Contact c: contactList) {
-            if (search.equalsIgnoreCase(c.getName())) {
+            if (Pattern.compile(Pattern.quote(search), Pattern.CASE_INSENSITIVE).matcher(c.getName()).find()) {
                 System.out.println(LINE_BREAK);
                 System.out.printf("%s%-25s | %-11s%s\n", ANSI_BLUE, "Name", "Phone Number", ANSI_RESET);
                 System.out.println(DIVIDER);
@@ -97,7 +98,7 @@ class ContactManager {
 
         // Main Loop
         for(boolean shouldContinue = true; shouldContinue;) {
-           
+
             for(int i = 0; i < MENU_OPTS.length; i++)
                 System.out.printf("%d %s\n", i + 1, MENU_OPTS[i]);
 
